@@ -1,0 +1,6 @@
+Realice la función void mezclar(int *a, int *b,int *c, int max) que mezcla los valores del array a y c en el array c; de forma ordenada. Los arrays a y b tienen el mismo tamaño y el tamaño está dado en el parámetro max. El array c tiene por tamaño 2 veces max.
+
+Debe realizar la mezcla usando punteros, recorriendo cada uno de los arrays. No es válido colocar en el array c primero los valores de a y luego los de b (o viceversa) y realizar un algoritmo de ordenamiento sobre el array c, de hacerse de esa forma invalida la respuesta.
+
+Pantallazo del resultado esperado
+

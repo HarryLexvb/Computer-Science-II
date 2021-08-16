@@ -1,0 +1,86 @@
+#include <iostream>
+
+using namespace std;
+
+int suma(int a, int b)
+{ return a+b;}
+
+int resta(int a, int b)
+{ return a-b;}
+
+typedef int (*PF)(int, int);
+
+int main() {
+    int (*pf[2])(int, int) = {suma,resta};
+
+    int (*(*ppff))(int, int) = pf;
+  
+
+    PF PuntFun[2] = {suma,resta};
+    PF *ppf = PuntFun;
+
+    int num[10]={10,15,5,38,89,77,100,45,48,3};
+    int op[10]= {0,0,1,0,1,1,0,1,1,0};
+    int res = 0;   
+  
+
+   for(int i =0; i <10; i++)
+     { 
+       res = pf[op[i]](res,num[i]);
+       cout<<res<<endl;
+     }
+
+    cout<<pf<<endl;
+    cout<<pf+1<<endl;
+
+    cout<<*pf<<endl;
+    cout<<*(pf+1)<<endl;
+  
+   cout<<pf[0](8,3)<<endl;
+    cout<<pf[1](8,3)<<endl;
+  
+   cout<<(*(pf+0))(8,3)<<endl;
+    cout<<(*(pf+1))(8,3)<<endl;
+
+  cout<<(*ppf)(10,6)<<endl;
+   ppf++;
+  cout<<(*ppf)(10,6)<<endl;  
+
+  cout<<(*ppff)(10,6)<<endl;
+   ppff++;
+  cout<<(*ppff)(10,6)<<endl;
+
+  ppff = PuntFun;
+  res = 0;
+  int *pnum = num;
+  int *pop = op;
+
+  cout<<"--------------------------------------"<<endl;
+   for(int i =0; i <10; i++)
+     { 
+       if(*pop)
+         ppff++;
+       res = (*ppff)(res,*pnum);
+       if(*pop)
+         ppff--;
+       cout<<res<<endl;
+       pnum++;
+       pop++;
+     }
+
+   pnum = num;
+  pop = op;
+  res = 0;
+  ppff = PuntFun;
+  cout<<"--------------------------------------"<<endl;
+   for(int i =0; i <10; i++)
+     { 
+       res = (*(ppff+*pop))(res,*pnum);
+       cout<<res<<endl;
+       pnum++;
+       pop++;
+     }
+
+  
+    return 0;
+}

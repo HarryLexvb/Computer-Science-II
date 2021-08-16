@@ -1,0 +1,10 @@
+Realizar una función que permita transponer una matriz, utilizando solamente punteros, tal como se explicó en clase.
+
+El programa debe imprimir la matriz antes y después de la transposición.
+
+Suba un archivo txt o cpp con el código fuente.
+
+Fecha de entrega: 05/04/2021
+
+
+este ejercicio lo hice mal 

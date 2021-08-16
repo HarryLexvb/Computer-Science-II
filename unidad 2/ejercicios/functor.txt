@@ -1,0 +1,76 @@
+#include <iostream>
+
+using namespace std;
+
+class functor_suma
+{
+   int x;
+   public:
+    /*functor_suma(int a)
+    { x = a; }*/
+
+    functor_suma(int a): x(a) {};
+    int operator()(int b)
+    {
+      return x+b;
+    }
+    
+};
+
+int suma(int a, int b)
+{
+  return a+b;
+}
+
+int negativo(int a)
+{
+  return -a;
+}
+
+int ejecuta(int a, int b, int (*pf)(int,int))
+{
+ /* if(b==0)
+    return pf(a);*/
+  return pf(a,b);
+}
+
+class sum
+{
+   public:
+   int operator()(int a, int b)
+   {return a+ b;}
+   int operator()(int a)
+   {return a;}
+};
+
+class neg
+{
+   public:
+   int operator()(int a,int b=0)
+   {return -a;}
+};
+
+template <class T> 
+int ejecuta2(int a, int b, T pf)
+{
+ if(b==0)
+    return pf(a);
+  return pf(a,b);
+}
+
+
+
+int main() {
+
+  functor_suma s(8);
+
+  cout<<s(3)<<endl;
+  cout<<s(2)<<endl;
+
+  cout<<ejecuta(5, 3, suma)<<endl;
+  // cout<<ejecuta(5, 0, negativo)<<endl;
+  cout<<ejecuta2(10,13,sum())<<endl;
+  cout<<ejecuta2(10,0,sum())<<endl;
+  cout<<ejecuta2(10,0,neg())<<endl;
+
+}

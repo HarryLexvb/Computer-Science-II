@@ -1,0 +1,33 @@
+#include <iostream>
+
+using namespace std;
+
+void recorre(char *CAD)
+{
+   for(;*CAD;CAD++)
+     cout<<*CAD<<" ";
+  cout<<*CAD; //Imprime el caracter nulo, no se ve.
+}
+
+void recorre2(char (*INI)[50], char (*FIN)[50]) //char **
+{
+  for(;INI<=FIN;INI++)
+    {
+      cout<<INI<<endl;//char **
+      cout<<*INI<<endl;//char *
+      recorre(*INI);
+      cout<<endl;
+    }
+    
+}
+
+int main() {
+    char A[50] = { "Hello, world!"};
+    char B[3][50]= { "Hello, world!", "CS Rules", "Viva el Peru!"};
+
+  recorre(A);
+  cout<<endl;
+  recorre2(B,B+2);
+  
+    return 0;
+}

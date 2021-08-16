@@ -1,0 +1,53 @@
+#include <iostream>
+
+using namespace std;
+
+void incremento(int a)
+{
+  cout << "Valor de A antes (incre) "<<a<<endl;
+  a = a+1;
+  cout<<"direccion de memoria de A (incre) " <<&a<<endl;
+  cout << "Valor de A despues (incre) "<<a<<endl;
+}
+
+void incremento1(int &a)
+{
+  cout << "Valor de A antes (incre1) "<<a<<endl;
+  a = a+1;
+  cout<<"direccion de memoria de A (incre1) " <<&a<<endl;
+  cout << "Valor de A despues (incre1) "<<a<<endl;
+}
+
+void incremento2(int *a)
+{
+  cout << "Valor de A antes (incre2) "<<a<<endl;
+  *a = *a+1;
+  cout<<"direccion de memoria de A (incre2) " <<&a<<endl;
+  cout<<"valor de A (incre2) " <<a<<endl;
+  cout<<"valor de *A (incre2) " <<*a<<endl;
+  cout << "Valor de A despues (incre2) "<<*a<<endl;
+}
+
+
+int main() {
+    int a = 1;
+  
+    cout << "Valor de A antes "<<a<<endl;
+    incremento(a);
+    cout<<"direccion de memoria de A " <<&a<<endl;
+    cout<< "Valor de A despues "<<a<<endl;
+
+    cout<<"----------------------------------"<<endl;
+    cout << "Valor de A antes "<<a<<endl;
+    incremento1(a);
+    cout<<"direccion de memoria de A " <<&a<<endl;
+    cout<< "Valor de A despues "<<a<<endl;
+
+    cout<<"----------------------------------"<<endl;
+    cout << "Valor de A antes "<<a<<endl;
+    incremento2(&a);
+    cout<<"direccion de memoria de A " <<&a<<endl;
+    cout<< "Valor de A despues "<<a<<endl;
+    
+    return 0;
+}

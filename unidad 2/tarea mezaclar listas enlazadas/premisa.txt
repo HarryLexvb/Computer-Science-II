@@ -1,0 +1,188 @@
+#include <iostream>
+
+using namespace std;
+
+template <typename T>
+struct nodo{
+   T valor;
+   nodo *next; 
+   nodo(T v, nodo *n=nullptr)
+   { 
+      valor =v;
+      next = n;
+    }
+};
+
+void arraytolist(int a, nodo<int>& head){
+   head = new nodo(a[0]);
+   nodo<int>* t= head;
+   for(int i=1;i<10;i++)
+     {
+       t->next = new nodo(a[i]);
+       t = t->next;
+     }
+}
+
+void printlista(nodo<int> *p){
+  cout<<"Head -> ";
+  for(;p;p=p->next)
+    cout<<p->valor<<" -> ";
+  cout<<"NULL"<<endl;
+}
+
+void mezcla(nodo<int>& l1,nodo<int>& l2,nodo<int>*& l3){
+  /*
+  
+  EJEMPLO: 
+  l1 -> 1 -> 3 -> 5 -> 7
+  l2 -> 2 -> 4 -> 6 -> 8
+  l3 -> NULL
+
+  tiene que imprimirse asi: 
+  l1 -> NULL //se destruye
+  l2 -> NULL //se destruye 
+  l3 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 //mezcla la lista ordenada 
+  
+  condiciones: 
+  se tienen que MOVER los enlaces, prohibido hacer
+  l3 -> next = new nodo(l1->valor)
+  delete l3 -> next 
+  SOLO SE DEBE INTERCAMBIAR ENLACES MAS NADA, DE LO CONTRARIO NO SE CALIFICARA 
+
+EXPLICACION DETALLADA: 
+
+        p
+l1 -> 4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+      q
+
+l3 -> NULL
+
+p -> valor<q -> valor 
+si: p
+no: q
+iguales: q
+
+if(!p) -> r -> next -> q
+if(!q) -> r -> next -> p
+
+p < q     4 < 4
+
+      p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+      q
+
+l3 -> 4
+
+p < q     4 < 7
+
+      p     
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+           q
+
+l3 -> 4 -> 4
+
+p < q     7 < 7
+
+           p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+           q
+
+l3 -> 4 -> 4 -> 7
+
+p < q     7 < 9
+
+           p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                q 
+
+l3 -> 4 -> 4 -> 7 -> 7
+
+p < q     11 < 9
+
+                p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                q 
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9
+
+p < q     11 < 11
+
+                p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                      q 
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11
+
+p < q     11 < 14
+
+                p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                            q 
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11 -> 11
+
+p < q     14 < 14
+
+                      p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                            q 
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11 -> 11 -> 14
+
+q es nulo? 
+                      p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                               q -> NULLL
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11 -> 11 -> 14
+
+q es nulo? 
+                             p
+l1    4 -> 7 -> 11 -> 14 -> 17
+l2 -> 4 -> 7 -> 9 -> 11 -> 14
+                               q -> NULLL
+
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11 -> 11 -> 14 -> 17
+
+paramos cuando p o q sean nulos 
+
+l1 -> NULL //se destruye
+l2 -> NULL //se destruye
+l3 -> 4 -> 4 -> 7 -> 7 -> 9 -> 11 -> 11 -> 14 -> 17
+
+  */
+}
+
+int main() {
+    int a[10] = {4,7,11,14,17,20,31,32,33,40};
+    int b[10] = {4,7,9,11,14,17,20,23,25,30};
+    nodo<int> *lista1=0, *lista2=0, *lista3=0;
+
+    arraytolist(a,lista1);
+    cout<<"Lista 1"<<endl;
+    printlista(lista1);
+
+    arraytolist(b,lista2);
+    cout<<"Lista 2"<<endl;
+    printlista(lista2);
+
+    mezcla(lista1,lista2,lista3);
+    cout<<"--------------------------"<<endl;
+    cout<<"Lista 1"<<endl;
+    printlista(lista1);
+    cout<<"Lista 2"<<endl;
+    printlista(lista2);
+    cout<<"Lista 3"<<endl;
+    printlista(lista3);
+    
+}

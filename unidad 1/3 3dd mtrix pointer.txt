@@ -1,0 +1,71 @@
+#include <iostream>
+
+using namespace std;
+
+void print1(int B[3][2][5]);
+void print2(int B[3][2][5]);
+
+
+int main() {
+   int A[3][2][5];
+
+  for(int i=0;i<3;i++)
+    for(int j=0;j<2;j++)
+      for(int k=0;k<5;k++)
+        A[i][j][k]=(i+1)*100+(j+1)*10+(k+1);
+
+  cout<<"Print 1"<<endl;
+  print1(A);
+
+  cout<<"Despues Print 1"<<endl;
+for(int i=0;i<3;i++)
+    for(int j=0;j<2;j++)
+      for(int k=0;k<5;k++)
+        cout<<A[i][j][k]<<" ";
+cout<<endl;
+  
+  cout<<"Print 2"<<endl;
+  print2(A);
+  
+
+  cout<<"Despues Print 2"<<endl;
+for(int i=0;i<3;i++)
+    for(int j=0;j<2;j++)
+      for(int k=0;k<5;k++)
+       cout<<A[i][j][k]<<" ";
+  
+    return 0;
+}
+
+void print1(int B[3][2][5])
+{
+  //cout<<"tamanio de B "<<sizeof(B)<<endl<<endl;
+  for(int i=0;i<3;i++)
+  {  for(int j=0;j<2;j++)
+     { for(int k=0;k<5;k++)
+       {  cout<< B[i][j][k] <<" ";
+           B[i][j][k] = B[i][j][k] +1000;
+
+         }
+       
+      cout<<endl;
+       }
+      cout<<endl;
+    }
+};
+
+void print2(int B[3][2][5])
+{
+  //cout<<"tamanio de B "<<sizeof(B)<<endl<<endl;
+  for(int (*p)[2][5]=B;p<B+3;p++)
+  {  for(int (*q)[5]=*p; q< *(p+1); q++)
+     { for(int *r= *q; r < *(q+1);r++)
+       {
+         cout<< *r <<" ";
+         *r = *r + 1000;
+         }
+      cout<<endl;
+       }
+      cout<<endl;
+    }
+};

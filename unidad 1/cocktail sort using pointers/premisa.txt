@@ -1,0 +1,7 @@
+Realizar el ordenamiento Cocktail Sort sobre un arrays, utilizando solamente punteros, tal como se explicó en clase.
+
+El programa debe imprimir el array antes del ordenamiento y después del ordenamiento.
+
+Suba un archivo txt o cpp con el código fuente.
+
+Fecha de entrega: 28/04/2021

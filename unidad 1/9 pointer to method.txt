@@ -1,0 +1,107 @@
+#include <iostream>
+
+using namespace std;
+
+class Foo
+{
+   public:
+   static int estatico;
+   int no_estatico;
+
+   int suma(int a, int b)
+   {
+      return a+b;
+    }
+
+    int mult(int a, int b)
+    {
+      return a*b;
+    }
+
+    static int inverso(int a)
+    {
+      return -a;
+    }
+
+    void dummy()
+    {
+      estatico++;
+    }
+
+    int pf(int a, int b)
+    { 
+      cout<<"hola, este metodo se puso para comprobar compilador"<<endl;
+      return 0;
+    }
+};
+
+int Foo::estatico = 0;
+
+int llamada1(int j, int k,Foo *pFoo, int (Foo::*pf)(int,int))
+{
+  //No se puede porque pFoo es un puntero
+  //return pFoo.pf(j,k);
+  //El compilador llama a el método pf y no al puntero a método de los parámetros
+  //return (*pFoo).pf(j,k);
+  //El método no es un puntero a función (método no es estático)
+  //return (*pFoo).*pf(j,k);
+  //Esta es la correcta
+  return ((*pFoo).*pf)(j,k);
+}
+
+int llamada2(int j, int k,Foo *pFoo, int (Foo::*pf)(int,int))
+{
+   return (pFoo->*pf)(j,k);
+}
+
+typedef int (Foo::*tpf)(int,int);
+
+int llamada3(int j, int k,Foo *pFoo,tpf pf)
+{
+   return (pFoo->*pf)(j,k);
+}
+
+int llamada4(int j, int (*pf)(int))
+{
+  return pf(j);
+}
+
+typedef int (*pf_normal)(int);
+int llamada5(int j, pf_normal pf)
+{
+  return pf(j);
+}
+
+int main() {
+
+    Foo foo1, foo2;
+
+    foo1.no_estatico = 10;
+    foo2.no_estatico = 15;
+
+    cout<<foo1.no_estatico<<endl;
+    cout<<foo2.no_estatico<<endl;
+
+    cout<<foo1.estatico<<endl;
+    cout<<foo2.estatico<<endl;
+
+    foo1.dummy();
+    cout<<foo2.estatico<<endl;
+    foo2.dummy();
+    cout<<foo1.estatico<<endl;
+    cout<<foo2.estatico<<endl;
+
+    cout<<llamada1(10,15,&foo1,&Foo::suma)<<endl;
+    cout<<llamada1(10,15,&foo2,&Foo::mult)<<endl;
+
+    cout<<llamada2(10,15,&foo2,&Foo::suma)<<endl;
+    cout<<llamada2(10,15,&foo1,&Foo::mult)<<endl;
+
+    cout<<llamada3(10,15,&foo2,&Foo::suma)<<endl;
+    cout<<llamada3(10,15,&foo1,&Foo::mult)<<endl;
+
+    cout<<llamada4(10,&Foo::inverso)<<endl;
+    cout<<llamada5(10,&Foo::inverso)<<endl;
+    
+    return 0;
+}

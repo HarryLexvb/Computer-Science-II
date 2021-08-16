@@ -1,0 +1,178 @@
+#include <iostream>
+
+using namespace std;
+
+template<class T>
+class asc
+{ 
+    public:
+    bool operator()(T a, T b)
+    { return a<b;}
+};
+
+template<class T>
+class des
+{ 
+   public:
+   bool operator()(T a, T b)
+   { return a>b;}
+};
+
+template <class T>
+class nodo
+{
+  public:
+  T valor;
+  nodo* next;
+  nodo(T v, nodo* n=nullptr)
+  { 
+    valor = v;
+    next = n;
+  }
+};
+
+template <class T,class O>
+class LE
+{
+  nodo<T> * head=nullptr;
+  O orden;
+
+  public:
+  //LE(bool(*pf)(T,T));
+  void print();
+  bool find(T v,nodo<T> *&pos);
+  void add(T v);
+  void del(T v);
+  ~LE();
+};
+
+/*/template<class T,class O>
+LE<T,O>::LE(bool(*pf)(T,T))
+{
+  orden = pf;
+}*/
+
+
+template <class T,class O>
+void LE<T,O>::print()
+{
+  cout<<"Head->";
+  for(nodo <T>* p=head;p;p = p->next)
+      cout<<p->valor<<"->";
+  cout<<"NULL"<<endl;   
+}
+
+template <class T,class O>
+bool LE<T,O>::find(T v, nodo<T> *&pos)
+{
+  pos = nullptr;
+  nodo<T>* p =head;
+  
+  for(;p && orden(p->valor,v);pos = p,p=p->next)
+    ;
+    if(p && p->valor == v)
+      return true;
+  return false;
+}
+
+template <class T,class O>
+void LE<T,O>::add(T v)
+{
+  nodo<T>* pos_ant;
+  if(!find(v,pos_ant))
+  {
+     if(pos_ant)
+       pos_ant->next = new nodo(v,pos_ant->next);
+     else
+      head = new nodo(v,head);
+  }
+}
+
+template <class T,class O>
+void LE<T,O>::del(T v)
+{
+  nodo<T> *pos_ant,*pos_del;
+  if(find(v,pos_ant))
+  {
+    if(pos_ant)
+    {
+      pos_del = pos_ant->next;
+      pos_ant->next = pos_del->next; //pos_ant->next = pos_ant->next->next;
+    }
+    else
+    {
+      pos_del = head;
+      head = pos_del->next; //head = head->next;
+    }
+    delete pos_del;
+  }
+}
+
+template <class T,class O>
+LE<T,O>::~LE()
+{
+ /* cout<<"Destruyendo lista..."<<endl;
+  while(head)
+ { 
+   cout<<head->valor<<" ";  
+    del(head->valor);
+ }
+ cout<<endl<<"Lista destruida";*/
+ while(head)
+   del(head->valor);
+}
+
+int main() {
+  LE<int,asc<int>> lista;
+
+  lista.print();
+  lista.add(5);
+  lista.print();
+  lista.add(1);
+  lista.print();
+  lista.add(3);
+  lista.print();
+  lista.add(7);
+  lista.print();
+  lista.add(3);
+  lista.print();
+
+  lista.del(3);
+  lista.print();
+  lista.del(3);
+  lista.print();
+  lista.del(7);
+  lista.print();
+  lista.del(1);
+  lista.print();
+  lista.del(5);
+  lista.print();
+
+  cout<<"------------------------"<<endl;
+
+  LE<char,des<char>> listaChar;
+  
+  listaChar.print();
+  listaChar.add('g');
+  listaChar.print();
+  listaChar.add('a');
+  listaChar.print();
+  listaChar.add('d');
+  listaChar.print();
+  listaChar.add('z');
+  listaChar.print();
+  listaChar.add('d');
+  listaChar.print();
+
+  listaChar.del('d');
+  listaChar.print();
+  listaChar.del('d');
+  listaChar.print();
+  listaChar.del('z');
+  listaChar.print();
+  listaChar.del('a');
+  listaChar.print();
+  listaChar.del('g');
+  listaChar.print();
+
+}
