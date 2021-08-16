@@ -1,0 +1,61 @@
+#include <iostream>
+
+using namespace std;
+
+void crazy_breath(char *CAD)
+{
+  int cont = 0;
+
+  while(cont<3)
+    {
+      for(;*CAD;CAD++)
+        {
+          if(*CAD == '&')
+            cont++;
+          cout<<*CAD;
+        }
+      if(*CAD =='\0')
+      {  
+        CAD++;
+        cout<<'*';
+        }
+      if(cont<3)
+        cont=0;
+      cout<<endl;
+    }
+}
+
+void crazy_breath2(char *CAD)
+{
+  int cont = 0,cont2=0;
+
+  while(cont<3)
+    {
+      for(;*CAD;CAD++,cont2++)
+        {
+          if(*CAD == '&')
+            cont++;
+          cout<<*CAD;
+        }
+      if(*CAD =='\0')
+      {  
+        CAD+= (50-cont2);
+        cont2=0;
+        cout<<'*';
+        }
+      if(cont<3)
+        cont=0;
+      cout<<endl;
+    }
+}
+
+
+
+int main() {
+    char B[4][50]= { "Hello, world!", "CS Rules", "Viva el Peru!","&&&"};
+  
+    //crazy_breath(*B);
+    crazy_breath2(*B);
+  
+    return 0;
+}

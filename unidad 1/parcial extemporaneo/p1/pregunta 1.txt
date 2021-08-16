@@ -1,0 +1,9 @@
+Realice la función int menor(char *a, char *b) que devuelve
+
+1 si la cadena a es menor que la cadena b
+2 si la cadena b es menor que la cadena a
+0 si ambas cadenas son iguales.
+La comparación se hace caracter por caracter siguiendo el orden asccii,. Si una cadena tiene todas las letras iguales pero es mas corta, se considera menor la cadena mas corta.
+
+Pantallazo del resultado esperado
+

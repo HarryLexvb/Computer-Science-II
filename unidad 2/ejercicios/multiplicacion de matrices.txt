@@ -1,0 +1,100 @@
+#include <iostream>
+
+using namespace std;
+
+void multiplica(int (*pa)[3][3])
+{
+  int *pini = **pa; //pa+0, primer elemento de la 1ra matriz
+  int *pfin = **(pa+1);//pa+1, primer elemento de la 2da matriz
+  int *qini = pfin;
+  int *qfin = **(pa+2); //primer elemento de la 3ra matriz;
+  int (*rini)[3] = *(pa+2); //primera fila de la 3ra matriz;
+  int (*rfin)[3] = rini+1; //segunda fina de la 3ra matriz;
+
+  int *p = pini;
+  int *q = qini;
+  int *r = *rini;
+  while(p<pfin)
+    {
+       *r = *r + *p * *q;
+       r++;
+       q++;
+       if(r == *rfin)
+       {
+         p++;
+         r=*rini;
+       }
+      if(q==qfin)
+      {
+        q=qini;
+        rini++;
+        rfin++;
+        r=*rini;
+      }
+      
+    }
+
+  /*for(int *p = pini; p<pfin;p++)
+    {
+      cout<<*p<<" ";
+    }
+  for(int *q = qini; q<qfin; q++)
+    {
+      cout<<*q<<" ";
+    }
+  for(int *r= *rini; r<*rfin; r++)
+     {
+      cout<<*r<<" ";
+    }
+    */
+}
+
+void imprimir(int (*pa_ini)[3][3],int (*pa_fin)[3][3])
+{
+  for(int (*i)[3][3]=pa_ini;i<pa_fin+1;i++)
+    {
+      for(int (*j)[3]=*i;j<*(i+1);j++)
+        {
+          for(int *k=*j;k<*(j+1);k++)
+            cout<<*k<<" ";
+          cout<<endl;
+        }
+      cout<<endl<<endl;
+    }
+  
+}
+
+int main()
+{
+  int A[3][3][3]={{{1,2,3},{4,5,6},{7,8,9}},{{10,20,30},{40,50,60},{70,80,90}},{{0,0,0},{0,0,0},{0,0,0}}};
+
+  cout<<"-------------Impresion con índices -----------------"<<endl<<endl;
+  for(int i=0;i<3;i++)
+    {
+     for(int j=0;j<3;j++)
+       {
+         for(int k=0;k<3;k++)
+           cout<<A[i][j][k]<<" ";
+         cout<<endl;
+       }
+      cout<<endl<<endl;
+    }
+
+  multiplica(A);
+
+  cout<<"-------------Impresion con índices y aritmetica de punteros -----------------"<<endl<<endl;
+  for(int i=0;i<3;i++)
+    {
+     for(int j=0;j<3;j++)
+       {
+         for(int k=0;k<3;k++)
+           cout<<*(*(*(A+i)+j)+k)<<" ";
+         cout<<endl;
+       }
+      cout<<endl<<endl;
+    }
+
+   cout<<"-----------Impresión con punteros-------------------"<<endl<<endl;
+  imprimir(A,A+2);
+  return 0;
+}

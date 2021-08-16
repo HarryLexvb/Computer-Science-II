@@ -1,0 +1,52 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    int mat=3;
+    int fil=5;
+    int col=4;
+
+    int ***A;
+
+  cout<<"cuantas matrices? ";
+  cin>>mat;
+  cout<<"cuantas filas? ";
+  cin>>fil;
+  cout<<"cuantas columnas? ";
+  cin>>col;
+
+    A = new int**[mat];
+
+    for(int*** i=A;i<A+mat;i++)
+      {
+        *i = new int*[fil];
+          for(int** j=*i;j<*i+fil;j++)
+            *j = new int[col];
+      }
+
+   int val=0;
+   for(int*** i=A;i<A+mat;i++,val+=100)
+      for(int** j=*i;j<*i+fil;j++,val+=10)
+        for(int* k=*j;k<*j+col;k++,val++)
+            *k=val;
+  
+    for(int*** i=A;i<A+mat;i++)
+      {  for(int** j=*i;j<*i+fil;j++)
+        {
+           for(int* k=*j;k<*j+col;k++)
+             cout<<*k<<" ";
+           cout<<endl;
+          }
+        cout<<endl;
+        }
+
+   for(int*** i=A;i<A+mat;i++)
+     {   for(int** j=*i;j<*i+fil;j++)   
+            delete [] *j;
+         delete[] *i;
+       }
+    delete[] A;
+    return 0;
+}

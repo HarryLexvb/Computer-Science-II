@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+bool par(int val)
+{ return val%2==0;}
+
+bool impar(int val)
+{return val%2!=0;}
+
+
+void swap(int *a, int *b)
+{
+  int tmp;
+  tmp = *a;
+  *a = *b;
+  *b = tmp;
+}
+
+void dividir(int *ini, int *fin,bool(*pf)(int))
+{
+  /*TO DO: Aqui puede declarar las variables que necesite*/
+
+  for(int *p = ini; p <= fin; p++)
+  { 
+    /* TO DO: Realice la lógica que sea requerida*/
+}
+
+int main() {
+  int A[10] = {1,2,3,4,5,6,7,8,9,10};
+  int B[10] = {1,2,3,4,5,6,7,8,9,10};
+  
+  cout<<"Ordenado sin separar"<<endl;
+  for(int *p = A; p < A+10; p++)
+     cout<< *p <<" ";
+  
+  cout<<endl;
+  dividir(A,A+9,par);
+  cout<<"Ordenado Separado Impar-Par"<<endl;
+  for(int *p = A; p < A+10; p++)
+     cout<< *p <<" ";
+  
+  cout<<endl;
+  dividir(B,B+9,impar);
+  cout<<"Ordenado Separado Par-Impar"<<endl;
+  for(int *p = B; p < B+10; p++)
+     cout<< *p <<" ";
+}

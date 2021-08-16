@@ -1,0 +1,9 @@
+ HICE MAL ESTA TAREA 
+
+Realizar una función que permita la multiplicación de matrices, utilizando solamente punteros, tal como se explicó en clase. El parámetro de entrada es una matriz de 3x3x3, donde la primera dimensión representa las matrices de entrada y la de resultado.
+
+El programa debe imprimir las matrices a multiplicar y la matriz de resultado.
+
+Suba un archivo txt o cpp con el código fuente.
+
+Fecha de entrega: 07/04/2021

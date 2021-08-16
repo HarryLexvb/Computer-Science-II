@@ -1,0 +1,7 @@
+Realizar una función que determine el área del círculo, rectángulo y triángulo, utilizando solamente punteros a función, tal como se explicó en clase. 
+
+El programa debe imprimir las áreas de cada figura, según lo indicado en clase.
+
+Suba un archivo txt o cpp con el código fuente.
+
+Fecha de entrega: 08/04/2021

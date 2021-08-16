@@ -1,0 +1,7 @@
+Realizar una función que determine si una frase es palíndromo, utilizando solamente punteros, tal como se explicó en clase. 
+
+El programa debe imprimir si las frases son palíndromos o no según lo indicado en clase.
+
+Suba un archivo txt o cpp con el código fuente.
+
+Fecha de entrega: 07/04/2021

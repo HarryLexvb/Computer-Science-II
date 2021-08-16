@@ -1,0 +1,5 @@
+Realice la función void mezclar(int *a, int *b,int *c) que mezcla los valores un array donde la mitad está poblado de impares ordenados y la otra mitad de pares ordenados. El puntero a apunta al inicio, b a la mitad y c al último elemento.
+
+Debe realizar la mezcla usando punteros. No es válido usar un algoritmo de ordenamiento sobre el array, de hacerse de esa forma invalida la respuesta.
+
+Pantallazo del resultado esperado

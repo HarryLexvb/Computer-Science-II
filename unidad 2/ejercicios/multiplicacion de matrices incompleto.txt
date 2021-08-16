@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std;
+
+void multiplica(int (*pa)[3][3])
+{
+  int *pini = **pa; //pa+0, primer elemento de la 1ra matriz
+  int *pfin = **(pa+1);//pa+1, primer elemento de la 2da matriz
+  int *qini = pfin;
+  int *qfin = **(pa+2); //primer elemento de la 3ra matriz;
+  int (*rini)[3] = *(pa+2); //primera fila de la 3ra matriz;
+  int (*rfin)[3] = rini+1; //segunda fina de la 3ra matriz;
+
+  int *p = pini;
+  int *q = qini;
+  int *r = *rini;
+  while(p<pfin)
+    {
+       *r = *r + *p * *q;
+       r++;
+       q++;
+       if()
+      
+    }
+
+  /*for(int *p = pini; p<pfin;p++)
+    {
+      cout<<*p<<" ";
+    }
+  for(int *q = qini; q<qfin; q++)
+    {
+      cout<<*q<<" ";
+    }
+  for(int *r= *rini; r<*rfin; r++)
+     {
+      cout<<*r<<" ";
+    }
+    */
+}

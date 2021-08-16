@@ -1,0 +1,57 @@
+// Punteros1.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
+//
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+
+    int a = 5;
+    int& b = a;
+    int c = 7;
+
+    int* p = &a;
+    int*& q = p;
+
+    cout << "valor de a: " << a << endl;
+    cout << "valor de b: " << b << endl;
+
+    cout << "Direccion memoria de a: " << &a << endl;
+    cout << "Direccion memoria de b: " << &b << endl << endl;
+
+    cout << "Dirección de memoria de p: " << &p << endl;
+    cout << "Valor de p: " << p << endl;
+    cout << "Desreferencia de p: " << *p << endl << endl;
+
+    cout << "Dirección de memoria de q: " << &q << endl;
+    cout << "Valor de q: " << q << endl;
+    cout << "Desreferencia de q: " << *q << endl;
+
+    q = &c;
+    cout << *p << endl;
+    cout << *p++ << endl;
+    //cout<<(*p++)<<endl;
+    cout << *p << endl;
+    cout << c << endl;
+    cout << *((&c) + 1) << endl;
+
+    int g = 1;
+
+    cout << g++ + ++g << endl;
+    cout << g << endl;
+
+
+
+    return 0;
+}
+
+// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
+// Depurar programa: F5 o menú Depurar > Iniciar depuración
+
+// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
+//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
+//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
+//   4. Use la ventana Lista de errores para ver los errores
+//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
+//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln

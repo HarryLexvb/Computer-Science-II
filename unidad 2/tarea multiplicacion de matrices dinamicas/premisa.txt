@@ -1,0 +1,44 @@
+//MULTIPLICACIONDE MATRICES CON MEMORIA DINAMICA 
+//no cambie la funciones, llene el codigo en "code here" 
+
+#include <iostream>
+
+using namespace std; 
+
+void MULT_MAT(int **A, int **B, int **C, int m, int n, int o){
+
+  /*realizar calculo de la multiplicacion de matriz A y B 
+  luego almacenar en la matriz C (aqui solo puede usar punteros)
+  
+  code here 
+  
+  */
+}
+
+void imprimir(){ //escribir los aprametros correspondientes
+  
+  /*codigo para imprimir la matriz C (aqui puede usar indices o punteros)
+
+  code here 
+
+  */
+}
+
+int main(){
+  int **A, **B, **C; //matrices 
+  int m, n, o; //dimensiones 
+
+  /*crear matrices dinamicas A, B y C (aqui solo puede usar punteros)
+  
+  code here 
+  
+  */
+
+  /*llenar matrices (aqui puede hacerlo con punteros o con indices)
+  
+  code here 
+  */
+
+  //llamar la funcion MULT_MAT
+  MULT_MAT(); //escribir los parametros correspondientes 
+}
